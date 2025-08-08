@@ -6,5 +6,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Torch telepítése GPU támogatással (aktuális verzió + CUDA 12.x)
-RUN pip install --upgrade pip && \
-    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+RUN pip install --upgrade pip
+COPY requirements.txt .
+RUN pip install -r requirements.txt
