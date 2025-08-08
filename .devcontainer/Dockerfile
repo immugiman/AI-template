@@ -1,0 +1,10 @@
+FROM mcr.microsoft.com/devcontainers/python:3.11
+
+# NVIDIA CUDA támogatás (csak ha GPU-t használsz)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3-pip \
+    && rm -rf /var/lib/apt/lists/*
+
+# Torch telepítése GPU támogatással (aktuális verzió + CUDA 12.x)
+RUN pip install --upgrade pip && \
+    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
